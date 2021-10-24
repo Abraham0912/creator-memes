@@ -1,3 +1,4 @@
+import html2canvas from 'html2canvas';
 import './App.css';
 import { useState } from 'react';
 import listMemes from './jsons/listMeme.json';
@@ -22,7 +23,14 @@ function App() {
   }
 
   const onClickExport = ()=>{
-    //asd
+    alert("exportando")
+    html2canvas(document.querySelector("#meme")).then(canvas => {
+      var img = canvas.toDataURL("image/png");
+      var link = document.createElement('a');
+      link.download = 'meme.png';
+      link.href = img;
+      link.click();
+    });
   }
 
   const onChangeSelect= (e)=>{
@@ -42,7 +50,7 @@ function App() {
       <br />
       <button onClick={onClickExport}>Exportar</button>
       <button onClick={clear}>Clear</button>
-      <div className="meme">
+      <div className="meme" id="meme">
         <span>{linea1}</span>
         <img width="500px" src={dir} alt="" />
         <span>{linea2}</span>
