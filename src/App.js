@@ -5,6 +5,7 @@ import listMemes from './jsons/listMeme.json';
 function App() {
   const [linea1,setLinea1] = useState("");
   const [linea2,setLinea2] = useState("");
+  const [dir,setDir] = useState("");
 
   const onChangeLinea1 = (e)=>{
     setLinea1(e.target.value);
@@ -23,9 +24,13 @@ function App() {
   const onClickExport = ()=>{
     //asd
   }
+
+  const onChangeSelect= (e)=>{
+    setDir(`images/${e.target.value}.jpg `)
+  }
   return (
     <div>
-      <select>
+      <select onChange={onChangeSelect}>
         {listMemes.map((item)=>{
           return <option key={item.id} value={item.id}>{item.name}</option>
         })}
@@ -34,8 +39,10 @@ function App() {
       <input id="first_line"  value={linea1} onChange={onChangeLinea1} type="text" placeholder="Linea 1"/>
       <br />
       <input id="second_line"  value={linea2} onChange={onChangeLinea2} type="text" placeholder="Linea 2"/>
+      <br />
       <button onClick={onClickExport}>Exportar</button>
       <button onClick={clear}>Clear</button>
+      
     </div>
   );
 }
