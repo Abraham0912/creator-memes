@@ -29,7 +29,7 @@ function App() {
     setDir(`images/${e.target.value}.jpg `)
   }
   return (
-    <div>
+    <div className="App">
       <select onChange={onChangeSelect}>
         {listMemes.map((item)=>{
           return <option key={item.id} value={item.id}>{item.name}</option>
@@ -42,7 +42,11 @@ function App() {
       <br />
       <button onClick={onClickExport}>Exportar</button>
       <button onClick={clear}>Clear</button>
-      
+      <div className="meme">
+        <span>{linea1}</span>
+        <img width="500px" src={dir} alt="" />
+        <span>{linea2}</span>
+      </div>
     </div>
   );
 }
